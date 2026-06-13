@@ -26,7 +26,7 @@ The main objective is to analyze how the Bayesian detector generalizes when test
 │  
 ├── data/
 │   └── processed/
-│             └── processed
+│             └── Dataset_Expermental_20Mil.csv
 ├── models/
 │   └── RB_Q5.xdsl
 ├── scripts/
