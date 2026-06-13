@@ -14,7 +14,7 @@ The main objective is to analyze how the Bayesian detector generalizes when test
 ```text
  WSN-IIoT-Bayesian-Network-Leave-One-Topology-Out-evaluation/
 │
-├── omnetpp/
+├── Modelagem OMNeT/
 │   ├── 01_omentpp_36.ini
 │   ├── 02_omentpp_49.ini
 │   ├── 03_omentpp_64.ini
@@ -24,7 +24,7 @@ The main objective is to analyze how the Bayesian detector generalizes when test
 │   ├── 07_networks_64.ned
 │   └── 08_networks_100.ned
 │  
-├── data/
+├── Dataset/
 │   └── processed/
 │             └── Dataset_Expermental_20Mil.csv
 ├── models/
