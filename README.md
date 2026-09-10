@@ -38,11 +38,7 @@ The main objective is to analyze how the Bayesian detector generalizes when test
 ├── results/
 │   ├── tables/
 │   └── figures/
-│
-│
-├── requirements.txt
-├── LICENSE
-└── README.md
+
 ```
 
 ## Simulation environment
@@ -66,7 +62,7 @@ The simulated topologies include grid networks with 36, 49, 64, and 100 nodes. T
 
 ## Dataset
 
-The processed dataset used to reproduce the experiments is available in the `data/processed/` directory.
+The experimental dataset used to reproduce the evaluation protocols is available in the `Dataset/` directory:
 
 The dataset is also available on Zenodo:
 
@@ -75,15 +71,15 @@ https://zenodo.org/records/20602871
 
 ## Bayesian Network model
 
-The `models/RB_Q5.xdsl` file contains the discrete Bayesian Network model used in the study. The model was created in GeNIe/SMILE format and represents the probabilistic relationships between topology, attack type, and the discretized network metrics: PDR, delay, throughput, and energy. Each metric is represented using five qualitative states: Very Low, Low, Medium, High, and Very High.
+The `Models_GnIe/RB_Q5.xdsl` file contains the discrete Bayesian Network model used in the study. The model was created in GeNIe/SMILE format and represents the probabilistic relationships between topology, attack type, and the discretized network metrics: PDR, delay, throughput, and energy. Each metric is represented using five qualitative states: Very Low, Low, Medium, High, and Very High.
 
 ## Evaluation protocols
 
-The `scripts/` directory contains the Python implementations of the three evaluation protocols used in the study:
+The `scripts.py/` directory contains the Python implementations of the three evaluation protocols used in the study:
 
-* `01_evaluate_intra_topology.py`: implements the intra-topology validation protocol, where training and testing are performed within the same network topology.
-* `02_evaluate_loto_simple.py`: implements the simple Leave-One-Topology-Out protocol, where the model is trained on three topologies and tested on the unseen topology.
-* `03_evaluate_loto_calibrated.py`: implements the Normal-baseline calibrated LOTO protocol, where Normal samples from the unseen topology are used to estimate local baseline statistics before cyberattack detection.
+* `protocolo_1_intra_topology.py`: implements the intra-topology validation protocol, where training and testing are performed within the same network topology.
+* `protocolo_2_simple_loto.py`: implements the simple Leave-One-Topology-Out protocol, where the model is trained on three topologies and tested on the unseen topology.
+* `protocolo_3_calibrated_loto.py`: implements the Normal-baseline calibrated Leave-One-Topology-Out protocol. For each held-out topology, 200 trusted Normal-operation samples are used exclusively to estimate local baseline statistics. These calibration samples are removed from the final test set. The Bayesian detector uses exactly four baseline-standardized evidences: PDR, delay, throughput, and energy. Discretization thresholds are learned exclusively from transformed training data, and the calibration-subset selection is repeated over 30 random seeds to quantify variability.
 
 Each script computes accuracy, macro-precision, macro-recall, macro-F1, ROC-AUC, confusion matrices, and ROC curves.
 
@@ -115,7 +111,7 @@ The Bayesian inference protocols implemented in this repository do not require `
 The repository also includes the Bayesian Network model file:
 
 ```text
-models/RB_Q5.xdsl
+Models_GnIe/RB_Q5.xdsl
 ```
 
 This file can be opened with GeNIe/SMILE and provides the graphical/probabilistic representation of the discrete Bayesian Network used in the study. It is provided for model inspection, documentation, and reproducibility purposes, but it is not required to execute the Python evaluation scripts.
